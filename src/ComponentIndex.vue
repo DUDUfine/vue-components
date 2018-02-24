@@ -12,6 +12,15 @@
       </div>
       <button class="du-btn" type="buton" @click="submitSelect">提交</button>
     </div>
+    <div>
+      <span>轮播图</span>
+      <carousel >
+        <div class="carousel-item"><div class="carousel-img" >zxZxz</div></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse2.png"/></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse3.png"/></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse2.png"/></div>
+      </carousel>
+    </div>
   </div>
 
 </template>
@@ -19,12 +28,14 @@
 <script>
   import duDate from './components/duDate.vue'
   import selectDown from './components/selectDown.vue'
+  import carousel from './components/carousel.vue'
   import selectlist from './../static/select.json'
 export default {
   name: 'App',
   components:{
     duDate,
-    selectDown
+    selectDown,
+    carousel
   },
   data(){
     return{
@@ -56,14 +67,14 @@ export default {
 </script>
 
 <style>
-/*#app {*/
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-  /*text-align: center;*/
-  /*color: #2c3e50;*/
-  /*margin-top: 60px;*/
-/*}*/
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 
   .selectDown{
     display: inline-block;
