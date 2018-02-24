@@ -291,19 +291,12 @@
 
   .du-prev-y,.du-next-y{
      width: 18px;
-     height: 18px;
-     line-height: 40px;
+    height: 18px;
+    line-height: 40px;
     vertical-align: middle;
-     /*margin-left: 15px;*/
-     /*margin-right: 15px;*/
-   }
-  /*.du-prev-m{*/
-    /*margin-left: 20px;*/
-    /*margin-right: 20px;*/
-  /*}*/
-  /*.du-next-m{*/
-    /*margin-right: 20px;*/
-  /*}*/
+
+  }
+
   .du-next-m,.du-next-y{
     transform:rotate(180deg);
     -ms-transform:rotate(180deg); 	/* IE 9 */

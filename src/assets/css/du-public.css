@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .du-form-select{
-  width: 60%;
+  width: 100%;
   position: relative;
   text-align: left;
   display: inline-block;
@@ -18,7 +18,7 @@
 .du-form-select dd{
   width: 100%;
   border-bottom: 1px solid #bdbdbd;
-  padding: 4px 5px;
+  padding: 8px 5px;
   margin: 0;
   /*color: #283234;*/
 }
@@ -38,12 +38,7 @@ input{
 .du-select-tip{
   color: #8d8d8d;
 }
-/*.du-dropDown-menu-icon{*/
-  /*position:absolute;*/
-  /*right:16px;*/
-  /*top:16px;*/
-  /*color:rgba(0,0,0,.12)*/
-/*}*/
+
 .du-dropDown-menu-icon{
   position: absolute;
   right: 3px;
@@ -53,9 +48,10 @@ input{
 .du-anim{
   position: absolute;
   width: 100%;
-  /*max-height: 100px;*/
-  /*overflow: scroll;*/
-  /*background-color: #1e9fff;*/
+  max-height: 250px;
+  overflow-y: scroll;
+  box-shadow: 0px 1px 0px #bdbdbd;
+  background-color: #1e9fff;
 }
 
 .selectScroll{

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import duDate from '../components/duDate'
+import selectDown from '../components/selectDown'
 
 Vue.use(Router)
 
@@ -9,13 +9,12 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
       path: '/duDate',
       component: duDate
+    },
+    {
+      path: '/selectDown',
+      component: selectDown
     }
   ]
 })
