@@ -52,6 +52,7 @@ input{
   overflow-y: scroll;
   box-shadow: 0px 1px 0px #bdbdbd;
   background-color: #1e9fff;
+  z-index: 999;
 }
 
 .selectScroll{
@@ -69,6 +70,6 @@ input{
   padding: 8px 20px;
 }
 
-.datapicker{
-  font-size: 14px;
-}
+/*.datapicker{*/
+  /*font-size: 14px;*/
+/*}*/

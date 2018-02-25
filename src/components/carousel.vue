@@ -1,12 +1,11 @@
 <template>
     <div class="carousel">
       <div class="carousel-con" id="carouselContent">
-
         <slot>没有内容</slot>
       </div>
       <div class="carousel-index">
         <ul id="con-index">
-          <li v-for="row in 3"  @click="changeContent(row)"></li>
+          <li v-for="row in contentNum"  @click="changeContent(row)"></li>
         </ul>
       </div>
       <div class="carousel-lefticon" @click="changeContent('PRE')">
@@ -19,65 +18,89 @@
 </template>
 
 <script>
-    export default {
-      name:"carousel",
-      data(){
-        return {
-//          carouselList:["carousel"],
-          activeIndex:0,
-//          contentNum:0
-
-        }
-      },
-      mounted:function(){
-        this.changeContent()
-      },
-      methods:{
-        changeContent(val){
-          var nowIndex=this.activeIndex;
-          if(val=="NEXT"){
-            if(this.activeIndex+1<this.contentNum ){
-              this.activeIndex++
-            }else if(this.activeIndex+1>=this.contentNum){
-              this.activeIndex=0
-            }
-          }else if(val=="PRE"){
-            if(this.activeIndex-1>=0 ){
-              this.activeIndex--
-            }else if(this.activeIndex-1<0){
-              this.activeIndex=this.contentNum-1
-            }else if( (/^\d*$/).test(parseInt(val))){
-              this.activeIndex=val;
-              document.getElementById("con-index").children[val-1].add("active-li")
-            }
-          }
-          this.changeActiveContent(nowIndex)
-        },
-        changeActiveContent(preIndex){
-          var el=document.getElementById("carouselContent");
-//          this.contentNum=el.childElementCount
-          el.children[preIndex].classList.remove("carousel-item-active")
-          el.children[preIndex].classList.add("carousel-item")
-          el.children[this.activeIndex].classList.remove("carousel-item")
-          el.children[this.activeIndex].classList.add("carousel-item-active")
-          document.getElementById("con-index").children[preIndex].classList.remove("active-li")
-          document.getElementById("con-index").children[this.activeIndex].classList.add("active-li")
-        },
-      },
-      watch:{
-
-      },
-      computed:{
-        contentNum:function(){
-//          if(document.getElementById("carouselContent").childElementCount){
-            return document.getElementById("carouselContent").childElementCount
-//          }else{
-//            return 0;
-//          }
-
-        }
-      }
+export default {
+  name:"carousel",
+  data(){
+    return {
+      //carouselList:["carousel"],
+      activeIndex: 0,
+      contentNum: 1
     }
+  },
+  created () {
+
+  },
+  mounted:function(){
+    this.changeContent()
+    this.contentNum = this.getContentNum()
+    this.autoPlay()
+  },
+  methods:{
+    changeContent(val){
+      var nowIndex=this.activeIndex;//原来的active轮播页数
+      if(val=="NEXT"){
+        if(this.activeIndex+1<this.contentNum ){
+          this.activeIndex++
+        }else if(this.activeIndex+1>=this.contentNum){
+          this.activeIndex=0
+        }
+      }else if(val=="PRE"){
+        if(this.activeIndex-1>=0 ){
+          this.activeIndex--
+        }else if(this.activeIndex-1<0){
+          this.activeIndex=this.contentNum-1
+        }
+      }else if( (/^\d*$/).test(parseInt(val))){
+        this.activeIndex=parseInt(val)-1;
+        // document.getElementById("con-index").children[val-1].add("active-li")
+      }
+      // else if(isNumber(parseInt(val))){
+      //   this.activeIndex=val;
+      // }
+      this.changeActiveContent(nowIndex)
+    },
+    changeActiveContent(preIndex){
+      var el = document.getElementById("carouselContent");
+      //      this.contentNum=el.childElementCount
+      el.children[preIndex].classList.remove("carousel-item-active")
+      el.children[preIndex].classList.add("carousel-item")
+      el.children[this.activeIndex].classList.remove("carousel-item")
+      el.children[this.activeIndex].classList.add("carousel-item-active")
+      document.getElementById("con-index").children[preIndex].classList.remove("active-li")
+      document.getElementById("con-index").children[this.activeIndex].classList.add("active-li")
+    },
+    getContentNum(){
+      if(document.getElementById("carouselContent")!= null || document.getElementById("carouselContent")!= undefined){
+        return document.getElementById("carouselContent").childElementCount
+      }else{
+        return 0;
+      }
+    },
+    autoPlay(){
+      setTimeout(function () {
+        var nowIndex = this.activeIndex;//原来的active轮播页数
+        if(this.activeIndex + 1 < this.contentNum ){
+          this.activeIndex++
+        }else if(this.activeIndex+1>=this.contentNum){
+          this.activeIndex=0
+        }
+        this.changeActiveContent(nowIndex)
+      }, 1000)
+    }
+  },
+  watch: {
+
+  },
+  computed: {
+    // contentNum: function () {
+    //   if (document.getElementById("carouselContent").childElementCount){
+    //     return document.getElementById("carouselContent").childElementCount
+    //   } else {
+    //     return 0;
+    //   }
+    // }
+  }
+}
 </script>
 
 <style scropd >
@@ -85,7 +108,9 @@
   position: relative;
   width: 80%;
   height: 370px;
+  text-align: center;
   background-color: #bdbdbd;
+  /*margin-top: 60px;*/
 }
   .carousel-index{
     margin-left: -50px;

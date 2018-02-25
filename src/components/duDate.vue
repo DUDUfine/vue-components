@@ -216,14 +216,18 @@
   @import "../../src/assets/css/du-public.css";
   .datapicker {
     width: 300px;
+    position: relative;
+    font-size: 14px;
   }
   .data-panel{
     border: 1px solid #9e9e9e;
     margin-top: 5px;
     width:100% ;
+    position: absolute;
+    z-index: 999;
     /*height: 400px;*/
     box-shadow: 1px 2px 3px #a3a3a3;
-    /*background-color: #42b983;*/
+    background-color: #fff;
   }
   .panel-header,panel-footer{
    line-height: 40px;

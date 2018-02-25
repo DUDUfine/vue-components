@@ -18,25 +18,25 @@
 
 <script scroped>
 
-  export default {
-    data(){
-      return{
-        city:{"key":"","value":""},
-        selectShow:false,
-        selectlist:"",
-        isActive:false,
-        date:"2018-03-14"
-      }
-    },
-    props: ['selectData'],
-    created(){
-      //父组件传递来的selectData赋值
+export default {
+  data () {
+    return{
+      city:{"key":"","value":""},
+      selectShow:false,
+      selectlist:"",
+      isActive:false,
+      date:"2018-03-14"
+    }
+  },
+  props: ['selectData'],
+  created(){
+    //父组件传递来的selectData赋值
       this.selectlist = this.selectData;
 
     },
     computed: {
     },
-    mounted:function(){
+  mounted:function(){
 //      var self=this
 //      ----------点击非下拉框下拉框收起Start-----------
 //        document.onclick=function (event) {
@@ -57,58 +57,57 @@
 //        }
       //      ----------点击非下拉框下拉框收起End-----------
 
-    },
-    methods:{
-      submitCity(){
-        if(this.city.key==null||this.city.key=="") {
-          alert("请选择一个城市！")
-        }
-
-      },
-
-      setSelectData(event){
-        //        this.selectShow=false;   //下拉框使用失焦方法时去掉
-        this.city.key=event.currentTarget.getAttribute("value");
-        this.city.value=event.currentTarget.innerText;
-        this.$emit("selectDataChange",this.city)//将日期传入父页面
-
-      },
-      selectBlur(){
-        console.log("下拉框失去焦点")
-        this.selectShow=false;
-      },
-      isScrollSelect() {
-        var self=this
-        this.selectShow=true;
-        var dl=document.getElementsByTagName("dl");
-//        setTimeout(function () {
-//          console.log("执行滚动"+dl[0].offsetHeight)
-//          if(dl[0].offsetHeight >100){
-//            self.isActive=true;
-//          }
-//        },2)
-
-      },
-      setDate(va){
-        this.date=va
+  },
+  methods:{
+    submitCity(){
+      if(this.city.key==null||this.city.key=="") {
+        alert("请选择一个城市！")
       }
+
     },
-    computed:{
-      selectSearchFilter: function () {
-        var newSelectData = ''
-        if (!this.city) {
-          return
-        }
-        var selectdata=this.selectlist.city[0]
-        for (var key in selectdata) {
-          if (selectdata[key].indexOf(this.inputData) > 0) {
-            newSelectData.push(selectdata[key])
-          }
-        }
-        return selectdata
-      }
+
+    setSelectData(event){
+      //        this.selectShow=false;   //下拉框使用失焦方法时去掉
+      this.city.key=event.currentTarget.getAttribute("value");
+      this.city.value=event.currentTarget.innerText;
+      this.$emit("selectDataChange",this.city)//将日期传入父页面
+
+    },
+    selectBlur(){
+      console.log("下拉框失去焦点")
+      this.selectShow=false;
+    },
+    isScrollSelect() {
+      var self=this
+      this.selectShow=true;
+      var dl=document.getElementsByTagName("dl");
+    //    setTimeout(function () {
+    //      console.log("执行滚动"+dl[0].offsetHeight)
+    //      if(dl[0].offsetHeight >100){
+    //        self.isActive=true;
+    //      }
+    //    },2)
+    },
+    setDate (va) {
+      this.date = va
     }
-  };
+  },
+  computed: {
+    selectSearchFilter: function () {
+      var newSelectData = ''
+      if (!this.city) {
+        return
+      }
+      var selectdata = this.selectlist.city[0]
+      for (var key in selectdata) {
+        if (selectdata[key].indexOf(this.inputData) > 0) {
+          newSelectData.push(selectdata[key])
+        }
+      }
+      return selectdata
+    }
+  }
+};
 
 </script>
 
