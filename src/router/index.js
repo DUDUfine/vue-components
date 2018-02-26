@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import duDate from '../components/duDate'
 import selectDown from '../components/selectDown'
 import carousel from '../components/carousel'
+import progressBarView from '../../views/progressBarView.vue'
 
 Vue.use(Router)
 
@@ -20,6 +21,14 @@ export default new Router({
     {
       path: '/carousel',
       component: carousel
+    },
+    {
+      path: '/progressBarView',
+      component: progressBarView
+    },
+    {
+      // path: '*', redirect: '/index/page1'
+      path: '*', redirect: '/progressBarView'
     }
   ]
 })
