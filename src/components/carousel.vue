@@ -73,11 +73,12 @@ export default {
       if(document.getElementById("carouselContent")!= null || document.getElementById("carouselContent")!= undefined){
         return document.getElementById("carouselContent").childElementCount
       }else{
-        return 0;
+        return 1;
       }
     },
     autoPlay(){
-      setTimeout(function () {
+      setInterval(() => {
+
         var nowIndex = this.activeIndex;//原来的active轮播页数
         if(this.activeIndex + 1 < this.contentNum ){
           this.activeIndex++
@@ -85,7 +86,8 @@ export default {
           this.activeIndex=0
         }
         this.changeActiveContent(nowIndex)
-      }, 1000)
+        console.log("每秒钟输出nowIndex"+nowIndex+"activeIndex"+this.activeIndex)
+      }, 5000)
     }
   },
   watch: {

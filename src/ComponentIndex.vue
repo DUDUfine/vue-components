@@ -16,11 +16,10 @@
       <span>轮播图</span>
       <carousel >
         <div class="carousel-item"><div class="carousel-img" >第一个轮播图内容</div></div>
-        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse2.png"/></div>
-        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse3.png"/></div>
-        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse2.png"/></div>
-        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse4.png"/></div>
-        <div class="carousel-item"><img class="carousel-img" src="../static/images/carouse3.png"/></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carousel1.png"/></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carousel2.png"/></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carousel3.png"/></div>
+        <div class="carousel-item"><img class="carousel-img" src="../static/images/carousel4.png"/></div>
       </carousel>
     </div>
   </div>
