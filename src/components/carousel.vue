@@ -123,7 +123,7 @@ export default {
     bottom: 10px;
     left: 50%;
     border-radius: 50px;
-    background-color: rgba(51, 130, 116,0.6);
+    background-color: rgba(151, 151, 151,0.6);
   }
 .carousel-con{
   height: 100%;
