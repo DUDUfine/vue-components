@@ -5,7 +5,7 @@ import App from './ComponentIndex'
 import router from './router'
 
 Vue.config.productionTip = false
-
+window.bus = window.bus || new Vue()
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

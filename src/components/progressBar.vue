@@ -10,12 +10,12 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script scroped>
 
 //以下为各种初始量
 // var totalWidth = document.getElementsByClassName("plLoadingCon")[0].clientwidth
 var totalWidth = 500
-var pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止 
+var pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
 var limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
 
 var state = "init"
@@ -31,32 +31,32 @@ export default {
   watch:{
     cmd:function (newOrder, oldOrder){
         var isInteger = /^[0-9]*[1-9][0-9]*$/　　//判断是否为正整数
-        
+
   　　  if(newOrder=='start'){
           this.start()
         }else if(newOrder=='end'){
           this.end()
         }else if(isInteger.test(newOrder)){
           this.setDecelerationParam(newOrder*1000)
-        }      　 
-  　　} 
+        }      　
+  　　}
   },
   created(){
     this.setDecelerationParam(12*1000)
   },
   methods: {
-    start: function (event) {  
+    start: function (event) {
       if(state!='init') return
       state = 'start'
-      var self = this   
-      
+      var self = this
+
       var myTimer = setInterval(function(){
           changeWidth()
         },10);
 
       function changeWidth(){
         t=t+10
-        if (state=='wait') { 
+        if (state=='wait') {
           if(t==limitTime){
             clearInterval(myTimer)
             state = 'timeout'
@@ -79,9 +79,9 @@ export default {
           }
           else{
             state = 'wait'
-          }         
+          }
         }
-      }     
+      }
     },
     end: function (event) {
         if (!(state == 'start'||state =='wait')) return
@@ -99,7 +99,7 @@ export default {
       t=0
       s0=nowWidth
       a = 0
-      v0=(totalWidth-nowWidth)/pauseTime    
+      v0=(totalWidth-nowWidth)/pauseTime
     }
   }
 }

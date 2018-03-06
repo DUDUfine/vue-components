@@ -9,10 +9,10 @@
         </ul>
       </div>
       <div class="carousel-lefticon" @click="changeContent('PRE')">
-        <img src="../../static/left.png" class="lefticon"/>
+        <img src="../../static/images/carouselLeft.png" class="lefticon"/>
       </div>
       <div class="carousel-righticon" @click="changeContent('NEXT')">
-        <img src="../../static/left.png" class="righticon"/>
+        <img src="../../static/images/carouselLeft.png" class="righticon"/>
       </div>
     </div>
 </template>
@@ -77,6 +77,7 @@ export default {
       }
     },
     autoPlay(){
+
       setInterval(() => {
 
         var nowIndex = this.activeIndex;//原来的active轮播页数
@@ -86,7 +87,7 @@ export default {
           this.activeIndex=0
         }
         this.changeActiveContent(nowIndex)
-        console.log("每秒钟输出nowIndex"+nowIndex+"activeIndex"+this.activeIndex)
+//        console.log("每秒钟输出nowIndex"+nowIndex+"activeIndex"+this.activeIndex)
       }, 5000)
     }
   },

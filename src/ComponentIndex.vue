@@ -22,6 +22,21 @@
         <div class="carousel-item"><img class="carousel-img" src="../static/images/carousel4.png"/></div>
       </carousel>
     </div>
+    <div>
+      <span>进度条</span>
+      <!--<progress-bar-view></progress-bar-view>-->
+      <div class="plLoading">
+        <progressBar :cmd="parentMessages"></progressBar>
+        <div class="progressBtn">
+          <button  @click="start">开始连接</button>
+          <button  @click="end">连接完成</button>
+          <input type="text" placeholder="限时多少秒内连接完成(大于2s)" ref="limitTime"></input>
+          <button @click='setLimitTime'>确定</button>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
 </template>
@@ -31,21 +46,31 @@
   import selectDown from './components/selectDown.vue'
   import carousel from './components/carousel.vue'
   import selectlist from './../static/select.json'
+//  import progressBarView from './../views/progressBarView.vue'
+  import progressBar from './components/progressBar.vue'
 export default {
   name: 'App',
   components:{
     duDate,
     selectDown,
-    carousel
+    carousel,
+//    progressBarView,
+    progressBar
   },
   data(){
     return{
       date:"2018-03-14",
       selectData:selectlist,
-      selectedItem:""
+      selectedItem:"",
+      parentMessages: 'ddd',
+      limitTime: null,
     }
   },
-
+  created(){
+    bus.$on('EVENT_TIMEOUT',function(){
+      alert('超时错误')
+    })
+  },
   methods:{
     setDate(va){
 
@@ -62,8 +87,27 @@ export default {
         alert(JSON.stringify(this.selectedItem))
       }
 
+    },
+    start: function (event) {
+      this.parentMessages = 'start'
+    },
+    end: function (event) {
+      this.parentMessages = 'end'
+    },
+    setLimitTime:function(event) {
+      var isInteger = /^[0-9]*[1-9][0-9]*$/　　//判断是否为正整数
+      var limitTime = this.$refs.limitTime.value
+      if(isInteger.test(limitTime)){
+        if(limitTime>2){
+          this.parentMessages = limitTime
+        }else{
+          alert('请输入一个大于2的正整数')
+        }
+      }else{
+        alert('请输入一个正整数')
+      }
     }
-  },
+  }
 }
 </script>
 
@@ -81,4 +125,15 @@ export default {
     display: inline-block;
     width: 500px;
   }
+
+.progressBtn{
+  position: relative;
+  top: 100px;
+  width: 100%;
+  text-align: center;
+  z-index: 999;
+}
+.progressBtn input{
+  width: 200px;
+}
 </style>
