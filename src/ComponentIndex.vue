@@ -12,7 +12,7 @@
       </div>
       <button class="du-btn" type="buton" @click="submitSelect">提交</button>
     </div>
-    <div>
+    <div style="height: 500px;">
       <span>轮播图</span>
       <carousel >
         <div class="carousel-item"><div class="carousel-img" >第一个轮播图内容</div></div>
@@ -25,7 +25,7 @@
     <div>
       <span>进度条</span>
       <!--<progress-bar-view></progress-bar-view>-->
-      <div class="plLoading">
+      <!--<div class="plLoading">-->
         <progressBar :cmd="parentMessages"></progressBar>
         <div class="progressBtn">
           <button  @click="start">开始连接</button>
@@ -33,7 +33,7 @@
           <input type="text" placeholder="限时多少秒内连接完成(大于2s)" ref="limitTime"></input>
           <button @click='setLimitTime'>确定</button>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
 

@@ -107,24 +107,24 @@ export default {
 
 <style>
   .plLoading{
-    width: 80%;
-    height: 38%;
-    margin-left: auto;
-    margin-right: auto;
+    /*width: 80%;*/
+    /*height: 38%;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
     position: relative;
-    top: 50px;
+    /*top: 50px;*/
   }
   .plLoadingContent{
-    width: 500px;
-    height: 220px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -250px;
+    /*width: 500px;*/
+    /*height: 220px;*/
+    /*position: relative;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-top: -100px;*/
+    /*margin-left: -250px;*/
   }
   .plLoadingCon{
-    width: 500px;
+    /*width: 500px;*/
     height: 16px;
     border-radius: 8px;
     background-color: #222222;
