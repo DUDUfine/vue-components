@@ -14,7 +14,7 @@
 var totalWidth = 100
 var pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
 var limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
-
+var myTimer=null
 var state = "init"
 export default {
   props:['cmd'],
@@ -50,7 +50,7 @@ export default {
       state = 'start'
       var self = this
 
-      var myTimer = setInterval(function(){
+      myTimer = setInterval(function(){
           changeWidth()
         },1);
 
@@ -76,7 +76,7 @@ export default {
             self.plcShow = false
             state = 'finish'
             bus.$emit("EVENT_FINISH")
-          }else if(state=='reset'){
+          }else if(state=='stop-reset'){
             clearInterval(myTimer)
             state='init'
             totalWidth = 100
@@ -84,13 +84,12 @@ export default {
             limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
             self.plsStyleWidth=0
             self.progress= 0
-
-          }
-          else{
+            self.plcShow = true
+          }else{
             state = 'wait'
           }
         }
-        if(state=='reset'){
+        if(state=='start-reset'){
           clearInterval(myTimer)
           state='init'
           totalWidth = 100
@@ -98,6 +97,7 @@ export default {
           limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
           self.plsStyleWidth=0
           self.progress= 0
+          self.plcShow=true
 
         }
       }
@@ -109,18 +109,26 @@ export default {
           this.setConstantParam()
     },
     reset: function (event){
-      if(state=="start"){
-        state='reset'
-      }else {
+     if(state=="finish"||state=="wait"||state=="timeout"||state=="start"){
+       clearInterval(myTimer)
         state='init'
-        this.plcShow=true
         totalWidth = 100
         pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
         limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
         this.plsStyleWidth=0
         this.progress= 0
+        this.plcShow=true
+      }else{
+       clearInterval(myTimer)
+        state='stop-reset'
+        totalWidth = 100
+        pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
+        limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
+        this.plsStyleWidth=0
+        this.progress= 0
+        this.plcShow=true
       }
-
+      this.setDecelerationParam(12*1000)
     },
     //开始后设置参数
     setDecelerationParam(lim){
