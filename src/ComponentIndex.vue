@@ -28,9 +28,10 @@
       <!--<div class="plLoading">-->
         <progressBar :cmd="parentMessages"></progressBar>
         <div class="progressBtn">
-          <button  @click="start">开始连接</button>
-          <button  @click="end">连接完成</button>
-          <input type="text" placeholder="限时多少秒内连接完成(大于2s)" ref="limitTime"></input>
+          <button  @click="progressBarStart">开始连接</button>
+          <button  @click="progressBarEnd">连接完成</button>
+          <button  @click="progressBarReset">重置</button>
+          <input type="text" placeholder="限时多少秒内连接完成(大于2s)" ref="limitTime"/>
           <button @click='setLimitTime'>确定</button>
         </div>
       <!--</div>-->
@@ -46,7 +47,6 @@
   import selectDown from './components/selectDown.vue'
   import carousel from './components/carousel.vue'
   import selectlist from './../static/select.json'
-//  import progressBarView from './../views/progressBarView.vue'
   import progressBar from './components/progressBar.vue'
 export default {
   name: 'App',
@@ -54,7 +54,6 @@ export default {
     duDate,
     selectDown,
     carousel,
-//    progressBarView,
     progressBar
   },
   data(){
@@ -62,7 +61,7 @@ export default {
       date:"2018-03-14",
       selectData:selectlist,
       selectedItem:"",
-      parentMessages: 'ddd',
+      parentMessages: '',  //用于进度条传递“start”、“end”、“timeout”信息
       limitTime: null,
     }
   },
@@ -88,24 +87,27 @@ export default {
       }
 
     },
-    start: function (event) {
+    progressBarStart: function (event) {
       this.parentMessages = 'start'
     },
-    end: function (event) {
+    progressBarEnd: function (event) {
       this.parentMessages = 'end'
     },
     setLimitTime:function(event) {
-      var isInteger = /^[0-9]*[1-9][0-9]*$/　　//判断是否为正整数
+      var isInteger = /^[0-9]*[1-9][0-9]*$/　　//判断是否为正整数(一位或2位小数)
       var limitTime = this.$refs.limitTime.value
       if(isInteger.test(limitTime)){
         if(limitTime>2){
           this.parentMessages = limitTime
         }else{
-          alert('请输入一个大于2的正整数')
+          alert('请输入一个大于2的两位正整数')
         }
       }else{
-        alert('请输入一个正整数')
+        alert('请输入一个两位正整数')
       }
+    },
+    progressBarReset:function (event) {
+      this.parentMessages = 'reset'
     }
   }
 }

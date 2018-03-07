@@ -1,20 +1,17 @@
 <template>
   <div class="plLoading">
-    <div class="plLoadingContent">
       <div class="plLoadingCon">
-        <div class="plLoadingShow" ref="plLoadingShow" :style="{width: plsStyleWidth+'px'}"></div>
-        <div class="plLoCir" :style="{left: plsStyleWidth+'px'}" v-show="plcShow"></div>
+        <div class="plLoadingShow" ref="plLoadingShow" :style="{width: plsStyleWidth+'%'}"></div>
+        <div class="plLoCir" :style="{left: plsStyleWidth+'%'}" v-show="plcShow"></div>
       </div>
       <div class="plLoadingNum">{{progress}}%</div>
-    </div>
   </div>
 </template>
 
 <script scroped>
 
 //以下为各种初始量
-// var totalWidth = document.getElementsByClassName("plLoadingCon")[0].clientwidth
-var totalWidth = 500
+var totalWidth = 100
 var pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
 var limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
 
@@ -36,8 +33,10 @@ export default {
           this.start()
         }else if(newOrder=='end'){
           this.end()
+        }else if(newOrder=='reset'){
+          this.reset()
         }else if(isInteger.test(newOrder)){
-          this.setDecelerationParam(newOrder*1000)
+          this.setDecelerationParam(newOrder*1000)     //当传入的是秒数将转成毫秒数
         }      　
   　　}
   },
@@ -45,6 +44,7 @@ export default {
     this.setDecelerationParam(12*1000)
   },
   methods: {
+    //进度条开始
     start: function (event) {
       if(state!='init') return
       state = 'start'
@@ -52,7 +52,7 @@ export default {
 
       var myTimer = setInterval(function(){
           changeWidth()
-        },10);
+        },1);
 
       function changeWidth(){
         t=t+10
@@ -76,24 +76,60 @@ export default {
             self.plcShow = false
             state = 'finish'
             bus.$emit("EVENT_FINISH")
+          }else if(state=='reset'){
+            clearInterval(myTimer)
+            state='init'
+            totalWidth = 100
+            pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
+            limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
+            self.plsStyleWidth=0
+            self.progress= 0
+
           }
           else{
             state = 'wait'
           }
         }
+        if(state=='reset'){
+          clearInterval(myTimer)
+          state='init'
+          totalWidth = 100
+          pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
+          limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
+          self.plsStyleWidth=0
+          self.progress= 0
+
+        }
       }
     },
+    //进度条结束
     end: function (event) {
         if (!(state == 'start'||state =='wait')) return
           state='end'
           this.setConstantParam()
     },
+    reset: function (event){
+      if(state=="start"){
+        state='reset'
+      }else {
+        state='init'
+        this.plcShow=true
+        totalWidth = 100
+        pauseWidth = totalWidth*0.9 //设置在进度条总宽度的90%处停止
+        limitTime,pauseTime,a,v0,t = 0,s0 = 0,nowWidth = 0
+        this.plsStyleWidth=0
+        this.progress= 0
+      }
+
+    },
+    //开始后设置参数
     setDecelerationParam(lim){
       limitTime=lim
       pauseTime = limitTime-2000
       a = -1*(2*pauseWidth)/(pauseTime*pauseTime)//匀变速公式
       v0 = -1*a*pauseTime//初始速度
     },
+    //结束后设置参数
     setConstantParam(){
       pauseTime = 1*1000
       t=0
@@ -107,21 +143,10 @@ export default {
 
 <style>
   .plLoading{
-    /*width: 80%;*/
-    /*height: 38%;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
     position: relative;
-    /*top: 50px;*/
   }
   .plLoadingContent{
-    /*width: 500px;*/
-    /*height: 220px;*/
-    /*position: relative;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*margin-top: -100px;*/
-    /*margin-left: -250px;*/
+
   }
   .plLoadingCon{
     /*width: 500px;*/
