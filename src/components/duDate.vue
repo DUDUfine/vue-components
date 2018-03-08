@@ -230,8 +230,9 @@
     background-color: #fff;
   }
   .panel-header,panel-footer{
-   line-height: 40px;
+    line-height: 40px;
     height: 40px;
+    text-align: center;
   }
 .panel-body{
   /*height: 250px;*/
