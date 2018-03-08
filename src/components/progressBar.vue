@@ -1,10 +1,12 @@
 <template>
   <div class="plLoading">
+    <div class="plLoadingNum">{{progress}}%</div>
       <div class="plLoadingCon">
         <div class="plLoadingShow" ref="plLoadingShow" :style="{width: plsStyleWidth+'%'}"></div>
+
         <div class="plLoCir" :style="{left: plsStyleWidth+'%'}" v-show="plcShow"></div>
       </div>
-      <div class="plLoadingNum">{{progress}}%</div>
+
   </div>
 </template>
 
@@ -177,10 +179,13 @@ export default {
     box-shadow: 0 0 20px #008cff;
   }
   .plLoadingNum{
-    font-size: 14px;
-    color: #0062b2;
-    margin-top: 20px;
+    font-size: 12px;
+    color: #ffffff;
+    /* margin-top: 20px; */
     text-align: center;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
   }
   .plLoadingContent button,.plLoadingContent input{
   	position: relative;

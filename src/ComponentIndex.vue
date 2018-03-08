@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div>
+    <div class="componentItem">
       <span>时间控件</span>
       <du-date :selDate="date" @changeDate="setDate"></du-date>
     </div>
-    <div>
+    <div class="componentItem">
       <span>下拉框</span>
       <br/>
       <div class="selectDown">
@@ -12,7 +12,7 @@
       </div>
       <button class="du-btn" type="buton" @click="submitSelect">提交</button>
     </div>
-    <div style="height: 500px;">
+    <div class="componentItem">
       <span>轮播图</span>
       <carousel >
         <div class="carousel-item"><div class="carousel-img" style="padding-top: 130px;font-size: 40px;color: #fff">第一个自定义html轮播图内容</div></div>
@@ -22,10 +22,8 @@
         <div class="carousel-item"><img class="carousel-img" src="../static/images/carousel4.png"/></div>
       </carousel>
     </div>
-    <div>
+    <div class="componentItem">
       <span>进度条</span>
-      <!--<progress-bar-view></progress-bar-view>-->
-      <!--<div class="plLoading">-->
         <progressBar :cmd="parentMessages"></progressBar>
         <div class="progressBtn">
           <button  @click="progressBarStart">开始连接</button>
@@ -34,7 +32,6 @@
           <input type="text" placeholder="限时多少秒内连接完成(大于2s)" ref="limitTime"/>
           <button @click='setLimitTime'>确定</button>
         </div>
-      <!--</div>-->
     </div>
 
 
@@ -62,7 +59,7 @@ export default {
       selectData:selectlist,
       selectedItem:"",
       parentMessages: '',  //用于进度条传递“start”、“end”、“timeout”信息
-      limitTime: null,
+      limitTime: 12,
     }
   },
   created(){
@@ -138,4 +135,10 @@ export default {
 .progressBtn input{
   width: 200px;
 }
+
+  .componentItem{
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #68758e;
+  }
 </style>

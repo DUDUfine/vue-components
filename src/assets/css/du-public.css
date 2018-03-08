@@ -23,7 +23,8 @@
   /*color: #283234;*/
 }
 .du-form-select dd:hover{
-  background-color: #1e9fff;
+  background-color: #009688;
+  color: white;
 }
 .du-select{
   white-space: nowrap;

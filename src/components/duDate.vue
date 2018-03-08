@@ -264,6 +264,7 @@
 
   .calendar-table tr{
     line-height: 30px;
+    text-align: center;
   }
   .calendar-table td{
     cursor: pointer;
