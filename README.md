@@ -1,30 +1,23 @@
-# vue-components
+#用vue进行ui组件化开发
+使用时可以将需要的组件引入，主要用于学习组件开发的思想，其中实现的组件有日期选择器、拉下框、轮播图、进度条等，后续有时间会继续添加新组件！
 
-> A Vue.js project
+## 项目运行
+```
+git clone https://github.com/DUDUfine/vue-components.git
 
-## Build Setup
+cd vue-components
 
-``` bash
-# install dependencies
+#安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+#启动热更新服务
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+在浏览器地址栏输入 localhost:8080 访问
+
+##技术栈
+vue2  + vue-router + webpack + ES6/7
+
+##效果图
+
