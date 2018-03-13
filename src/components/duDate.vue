@@ -5,9 +5,7 @@
       </div>
       <div class="data-panel"  v-show="showCalander">
         <div class="panel-header">
-          <!--<i class="layui-icon laydate-icon laydate-prev-y" @click="getYear('PRE')" ></i>-->
           <img src="../../static/images/more-left.png"  class="du-prev-y"   @click="getYear('PRE')">
-          <!--<i class="layui-icon laydate-icon laydate-prev-m" @click="getPreMonth"></i>-->
           <div  class="du-prev-m"  @click="getPreMonth"></div>
           <div class="du-year-month">
             <span class="sel-year">{{year}}年</span>
@@ -15,8 +13,6 @@
           </div>
           <div src="../../static/images/left.png"  class="du-next-m" @click="getNextMonth"></div>
           <img src="../../static/images/more-left.png"  class="du-next-y"    @click="getYear('NEXT')">
-          <!--<i class="layui-icon laydate-icon laydate-next-m" @click="getNextMonth"></i>-->
-          <!--<i class="layui-icon laydate-icon laydate-next-y"  @click="getYear('NEXT')"></i>-->
         </div>
         <div class="panel-body">
           <table class="calendar-table">
@@ -51,7 +47,6 @@
 
 <script scroped>
 
-/* eslint-disable*/
     export default {
       name:"du-date",
       data(){
@@ -260,6 +255,7 @@
   }
   .calendar-table{
     width: 100%;
+    text-align: center;
   }
 
   .calendar-table tr{

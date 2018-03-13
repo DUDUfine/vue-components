@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './ComponentIndex'
 import router from './router'
+import 'babel-polyfill'
 
 Vue.config.productionTip = false
 window.bus = window.bus || new Vue()

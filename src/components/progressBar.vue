@@ -5,6 +5,7 @@
         <div class="plLoadingShow" ref="plLoadingShow" :style="{width: plsStyleWidth+'%'}"></div>
 
         <div class="plLoCir" :style="{left: plsStyleWidth+'%'}" v-show="plcShow"></div>
+        <div class="plLoadingNum">{{progress}}%</div>
       </div>
 
   </div>
@@ -186,6 +187,7 @@ export default {
     width: 100%;
     z-index: 10;
     position: absolute;
+
   }
   .plLoadingContent button,.plLoadingContent input{
   	position: relative;
