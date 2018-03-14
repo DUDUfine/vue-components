@@ -20,3 +20,4 @@ npm run dev
 vue2  + vue-router + webpack + ES6/7
 
 ##效果图
+![image](https://github.com/DUDUfine/vue-components/blob/master/static/result.gif)
